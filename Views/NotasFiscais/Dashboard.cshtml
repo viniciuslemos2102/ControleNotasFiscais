@@ -1,0 +1,102 @@
+﻿@model ControleNotasFiscais.Models.DashboardViewModel
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .dashboard-header {
+            margin-bottom: 20px;
+        }
+
+        .dashboard-card {
+            margin-bottom: 20px;
+        }
+
+            .dashboard-card h2 {
+                font-size: 1.5rem;
+            }
+
+            .dashboard-card p {
+                font-size: 1.25rem;
+            }
+
+        .dashboard-list {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+        }
+
+            .dashboard-list li {
+                padding: 10px 0;
+                border-bottom: 1px solid #ddd;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <div class="dashboard-header">
+            <h1 class="text-center">Dashboard</h1>
+        </div>
+
+        <div class="row">
+            <!-- Total de Notas Fiscais -->
+            <div class="col-md-6 dashboard-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Total de Notas Fiscais</h2>
+                        <p class="display-4">@Model.TotalNotasFiscais</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Total Valor das Notas Fiscais -->
+            <div class="col-md-6 dashboard-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Total Valor das Notas Fiscais</h2>
+                        <p class="display-4">@Model.TotalValorNotasFiscais.ToString("C")</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Notas Fiscais por Tipo de Compra -->
+            <div class="col-md-6 dashboard-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Notas Fiscais por Tipo de Compra</h2>
+                        <ul class="dashboard-list">
+                            @foreach (var item in Model.NotasPorTipoCompra)
+                            {
+                                <li><strong>@item.TipoCompra:</strong> @item.Count</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empresas -->
+            <div class="col-md-6 dashboard-card">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Empresas</h2>
+                        <ul class="dashboard-list">
+                            @foreach (var empresa in Model.Empresas)
+                            {
+                                <li><strong>@empresa.Nome</strong></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

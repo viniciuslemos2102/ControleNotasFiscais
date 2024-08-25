@@ -1,0 +1,32 @@
+﻿@model IEnumerable<ControleNotasFiscais.Models.NotaFiscal>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Empresa</th>
+            <th>Valor</th>
+            <th>Tipo de Compra</th>
+            <th>Data da Compra</th>
+            <th>Comprador</th>
+            <th>Nota Fiscal</th>
+        </tr>
+    </thead>
+    <div class="">
+        <a class="btn btn-success small" asp-area="" asp-controller="NotasFiscais" asp-action="Create">CRIAR NOTA</a>
+    </div>
+    <tbody>
+        @foreach (var nota in Model)
+        {
+            <tr>
+                <td>@nota.Empresa.Nome</td>
+                <td>@nota.Valor</td>
+                <td>@nota.TipoCompra</td>
+                <td>@nota.DataCompra.ToShortDateString()</td>
+                <td>@nota.Usuario</td>
+                <td>
+                    <img src="@nota.CaminhoImagem" alt="Nota Fiscal" width="100" />
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
